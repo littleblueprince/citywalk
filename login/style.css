@@ -26,7 +26,7 @@
   width: 64px;
   height: 48px;
   left: calc(50% - 64px/2 - 0.5px);
-  top: 155px;
+  bottom: 700px;
   z-index: 2;
 
   font-family: 'Source Han Sans CN';
@@ -45,7 +45,7 @@
 width: 48px;
 height: 24px;
 left: calc(50% - 305px/2 - 0.5px);
-top: 331px;
+bottom: 550px;
 z-index: 2;
 
 
@@ -66,7 +66,7 @@ color: #FFFFFF;
 width: 32px;
 height: 24px;
 left: calc(50% - 305px/2 - 0.5px);
-top: 448px;
+bottom: 435px;
 z-index: 2;
 
 font-family: 'Source Han Sans CN';
@@ -111,7 +111,7 @@ color: #FFFFFF;
   width: 80px;
   height: 44px;
   left: calc(50% - 80px/2 - 0.5px);
-  top: 634px;
+  bottom: 260px;
   border: 1px solid #FFFFFF;
   border-radius: 12px;
   z-index: 2;
@@ -124,7 +124,7 @@ color: #FFFFFF;
 width: 64px;
 height: 24px;
 left: calc(50% - 54px/2 - 0.5px);
-top: 644px;
+bottom: 270px;
 
 font-family: 'Source Han Sans CN';
 font-style: normal;
