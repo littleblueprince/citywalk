@@ -20,20 +20,6 @@ db = SQLAlchemy(app)  # 实例化的数据库
 
 migrate = Migrate(app, db)
 
-#邮箱配置
-app.config.update(
-    MAIL_SERVER="smtp.qq.com",
-    MAIL_PORT = "587",
-    MAIL_USE_TLS = True,
-    MAIL_USERNAME = "3071318122@qq.com",
-    MAIL_PASSWORD = "txvnsybgvzmmdfeg" , # 生成的授权码
-    MAIL_DEFAULT_SENDER = "3071318122@qq.com",
-	)
-
-#邮箱
-mail = Mail()
-mail.init_app(app)
-
 ########################
 #### 数据库 ####
 ########################
@@ -131,6 +117,10 @@ def home():
 def logout():
     logout_user()
     return redirect(url_for('login', msg='退出成功'))
+
+@app.route('/test',methods=["GET"])
+def test():
+    return render_template("test.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

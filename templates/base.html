@@ -1,44 +1,26 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
+    <!--  Required meta tags  -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Bootstrap CSS最新版 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <title>citywalk</title>
-    <!-- Bootstrap CSS -->
-    <link href="../static/css/bootstrap.min.css">
-    <style>
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+        <link rel="icon" type="image/png" sizes="16x16" href="../static/images/p4.png">
 
-        h1 {
-            color: white;
-            font-size: 60px;
-        }
-
-        body {
-            background: #F4F4F4;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-            background-size: cover;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-        }
-    </style>
-    <!-- OUR CSS -->
 </head>
-<body>
-<!-- 导航栏 -->
 
-<br/>
-<div class="container">
-    {% block content %}
-    {% endblock %}
-</div>
-<script src="../static/js/bootstrap.bundle.js">
+<body>
+{% block content %}
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
 </script>
+
 </body>
+
 </html>
