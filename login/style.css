@@ -125,6 +125,7 @@ width: 64px;
 height: 24px;
 left: calc(50% - 54px/2 - 0.5px);
 bottom: 270px;
+z-index: 3;
 
 font-family: 'Source Han Sans CN';
 font-style: normal;
