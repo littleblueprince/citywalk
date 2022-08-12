@@ -10,7 +10,7 @@ from flask import abort, redirect, session
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from sqlalchemy import extract, and_
 from flask_mail import Mail, Message
-from webforms import LoginForm,SignupForm
+from webforms import LoginForm,SignupForm,FeelingSend
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:password123A.@47.101.197.145:3306/citywalk'   # 数据库地址
@@ -67,10 +67,6 @@ def load_user(user_id):
 def index():
     return render_template("index.html")
 
-@app.route('/index')
-def index1():
-    return render_template("index.html")
-
 '''
 注册api
 '''
@@ -120,7 +116,9 @@ def login():
 # @login_required
 def home():
     return render_template("home.html")
-
+'''
+退出
+'''
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -130,6 +128,15 @@ def logout():
 @app.route('/test',methods=["GET"])
 def test():
     return render_template("test.html")
+
+@app.route('/api',methods=["GET","POST"])
+def api():
+    return "sadasdasdada"
+
+@app.route('/apiTest',methods=["GET","POST"])
+def apiTest():
+    form=FeelingSend()
+    return render_template("apiTest.html",form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)

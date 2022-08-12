@@ -154,7 +154,12 @@
     var infoShow = function (res) {
         var res = res && res.geometry;
         if (res) {
-            console.log(res)
+            //初始化infoWindow
+            var infoWindow = new TMap.InfoWindow({
+                map: map,
+                position: new TMap.LatLng(res.position.lat, res.position.lng), //设置信息框位置
+                content: "<div><img src='https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/em.jpg'><p>Hello World!</p></div>" //设置信息框内容
+            });
         }
     }
     marker.on('click', infoShow);
