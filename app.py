@@ -10,6 +10,7 @@ from flask import abort, redirect, session
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from sqlalchemy import extract, and_
 from flask_mail import Mail, Message
+from webforms import LoginForm,SignupForm,FeelingSend
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:password123A.@47.101.197.145:3306/citywalk'   # 数据库地址
@@ -66,43 +67,47 @@ def load_user(user_id):
 def index():
     return render_template("index.html")
 
-@app.route('/index')
-def index1():
-    return render_template("index.html")
-
 '''
 注册api
 '''
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if request.method == 'POST':
-        user = User(name=request.form.get('name'),password=request.form.get('password'))
+    form=SignupForm()
+    if form.validate_on_submit():
+        user = User(name=form.name.data,password=form.name.data)
         if user is not None:
             db.session.add(user)
             db.session.commit()
-            return render_template('login.html')
+            flash('注册成功')
+            form.name.data=''
+            form.password.data=''
+            return redirect(url_for('login'))
         else:
-            return render_template("signup.html")
-    # GET 请求
-    else:
-        return render_template("signup.html")
+            flash('注册失败')
+            form.name.data = ''
+            form.password.data = ''
+    return render_template('signup.html',form=form)
+
 '''
 登录api
 '''
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        user_id = request.form.get('id')
-        user = User.query.filter_by(id=user_id).first()
-        if user is not None and request.form['password'] == user.password:
+    form =LoginForm()
+    if form.validate_on_submit():
+        user=User.query.filter_by(id=form.id.data).first()
+        if user is not None and form.password.data == user.password:
             curr_user = User()
-            curr_user.id = user_id
+            curr_user.id = form.id.data
             # 通过Flask-Login的login_user方法登录用户
             login_user(curr_user)
+            flash("登陆成功")
             return redirect(url_for('index'))
         flash('密码错误或者账户错误')
-    # GET 请求
-    return render_template('login.html')
+    form.id.data = None
+    form.password.data = ''
+    return render_template('login.html',
+                           form=form)
 
 '''
 个人主页
@@ -111,7 +116,9 @@ def login():
 # @login_required
 def home():
     return render_template("home.html")
-
+'''
+退出
+'''
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
@@ -121,6 +128,15 @@ def logout():
 @app.route('/test',methods=["GET"])
 def test():
     return render_template("test.html")
+
+@app.route('/api',methods=["GET","POST"])
+def api():
+    return "sadasdasdada"
+
+@app.route('/apiTest',methods=["GET","POST"])
+def apiTest():
+    form=FeelingSend()
+    return render_template("apiTest.html",form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)

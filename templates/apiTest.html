@@ -1,8 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
     <br>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">反馈信息</h4>
+                <div class="card-body">
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+
+                        {{ form.message.label(class="form-label") }}
+
+                        {{ form.message(class="form-control") }}
+                        <br/>
+
+                        {{ form.contact.label(class="form-label") }}
+
+                        {{ form.contact(class="form-control") }}
+                        <br/>
+
+                        {{ form.submit(class="btn btn-primary") }}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
@@ -48,50 +73,30 @@
         </div>
     </div>
 
-
-    <div class="card border-dark mb-3" style="width: 414px;">
-        <img src="../static/images/index.jpg" class="card-img-top" alt="图片加载错误">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card border-dark mb-3" style="width: 414px;">
-        <img src="../static/images/index.jpg" class="card-img-top" alt="图片加载错误">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card border-dark mb-3" style="width: 414px;">
-        <img src="../static/images/index.jpg" class="card-img-top" alt="图片加载错误">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
-    <div class="card border-dark mb-3" style="width: 414px;">
-        <img src="../static/images/index.jpg" class="card-img-top" alt="图片加载错误">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-
+    <script src="../static/js/jquery.min.js"></script>
     <script>
-        function jump1() {
-            window.location.href = "test.html";
+        getData()
+
+        function getData() {
+            $.ajax({
+                //请求方式
+                type: "POST",
+                //请求的媒体类型
+                contentType: "application/json;charset=UTF-8",
+                //请求地址
+                url: "http://localhost:5000/api",
+                //数据，json字符串
+                data: JSON.stringify(list),
+                //请求成功
+                success: function (result) {
+                    console.log(result);
+                },
+                //请求失败，包含具体的错误信息
+                error: function (e) {
+                    console.log(e.status);
+                    console.log(e.responseText);
+                }
+            })
         }
     </script>
 {% endblock %}

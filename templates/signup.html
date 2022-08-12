@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="../static/css/style.css" rel="stylesheet">
+    <title>Citywalk+</title>
 </head>
-<body>
-
+<body class="simple-page">
+<div class="object-image-cloth-metal top">
+</div>
+<div class="register">
+    <span>注册</span>
+</div>
+<div class="usernametitle">
+    <span>用户名</span>
+</div>
+<div class="passwordtitle">
+    <span>密码</span>
+</div>
+<div class="simple-page-wrap">
+    <form method="post">
+    <div class="simple-page-form" id="login-form">
+        {{ form.hidden_tag() }}
+        <div class="username">
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="password">
+            {{ form.password(class="form-control") }}
+        </div>
+        <div class="next">
+            <span class="nexttext">{{ form.submit }}</span>
+    </div>
+    </div>
+    </form>
+</div>
 </body>
+
 </html>
