@@ -1,0 +1,314 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/style_navigate.css">
+    <title>Citywalk+-导航页面</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/p4.png">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script charset="utf-8"
+            src="https://map.qq.com/api/gljs?v=1.exp&key=OI5BZ-IOQKK-Q77JB-ATBVS-GDD4Z-MMBHT&libraries=service"></script>
+</head>
+
+
+<body class="page">
+<div>
+    <img class="iphone" src="../static/images/iphone.png" alt=""/>
+</div>
+
+
+<div class="page-wrap">
+    <div class="column">
+
+        <div class="title">
+            <span>路线详情</span>
+        </div>
+
+        <div class="back">
+            <a href="">
+                <span class="backtext">﹤</span>
+            </a>
+        </div>
+
+        <div class="menu">
+            <a href="">
+                <span class="menutext">≡</span>
+            </a>
+        </div>
+
+        <div class="steptitle">
+            <span>雁滩公园-水车博览园</span>
+        </div>
+    </div>
+
+
+    <div class="map">
+        <div id="container"></div>
+    </div>
+
+
+    <div class="stepnumber">
+
+    </div>
+
+
+    <div class="steptext">
+        <span> 精彩图册 </span>
+    </div>
+
+
+    <div class="highlight">
+
+    </div>
+
+
+    <div class="feedback">
+        <a href="feedback.html">
+            <span class="feedbacktext">反馈</span>
+        </a>
+        <button onclick="showWay()">提交</button>
+    </div>
+
+
+</div>
+<script>
+    var points_all = [
+        {'longitude': 36.0727, 'latitude': 103.782}, {
+            'longitude': 36.0612,
+            'latitude': 103.841
+        }, {'longitude': 36.0659, 'latitude': 103.819}, {'longitude': 36.0655, 'latitude': 103.827}, {
+            'longitude': 36.0727,
+            'latitude': 103.805
+        }, {'longitude': 36.0669, 'latitude': 103.829}, {'longitude': 36.0721, 'latitude': 103.823}, {
+            'longitude': 36.0698,
+            'latitude': 103.823
+        }, {'longitude': 36.0762, 'latitude': 103.816}, {'longitude': 36.0689, 'latitude': 103.851}, {
+            'longitude': 36.0677,
+            'latitude': 103.777
+        }, {'longitude': 36.0443, 'latitude': 103.833}, {'longitude': 36.0823, 'latitude': 103.733}, {
+            'longitude': 36.0581,
+            'latitude': 103.849
+        }, {'longitude': 36.0599, 'latitude': 103.827}, {'longitude': 36.069, 'latitude': 103.816}, {
+            'longitude': 36.0349,
+            'latitude': 103.845
+        }, {'longitude': 36.0927, 'latitude': 103.719}, {'longitude': 36.0697, 'latitude': 103.857}, {
+            'longitude': 36.0918,
+            'latitude': 103.869
+        }, {'longitude': 36.0656, 'latitude': 103.863}, {'longitude': 36.0716, 'latitude': 103.805}]
+    var center = new TMap.LatLng(36.0727, 103.805);//设置中心点坐标
+    //初始化地图
+    var map = new TMap.Map("container", {
+        center: center
+    });
+
+    //初始化marker
+    var marker = new TMap.MultiMarker({
+        id: "marker-layer",
+        map: map,
+        styles: {
+            small: new TMap.MarkerStyle({
+                // 点标注的相关样式
+                width: 34, // 宽度
+                height: 46, // 高度
+                anchor: {x: 17, y: 23}, // 标注点图片的锚点位置
+                src: "https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png", // 标注点图片url或base64地址
+                color: "#333", // 标注点文本颜色
+                size: 16, // 标注点文本文字大小
+                direction: "bottom", // 标注点文本文字相对于标注点图片的方位
+                offset: {x: 0, y: 8}, // 标注点文本文字基于direction方位的偏移属性
+                strokeColor: "#fff", // 标注点文本描边颜色
+                strokeWidth: 2, // 标注点文本描边宽度
+            })
+        },
+        geometries: [
+            {'id': '1', 'styleId': 'small', 'position': new TMap.LatLng(36.0727, 103.782), 'content': '省博物馆'}, {
+                'id': '2',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0612, 103.841),
+                'content': '市博物馆'
+            }, {'id': '3', 'styleId': 'small', 'position': new TMap.LatLng(36.0659, 103.819), 'content': '西关清真寺'}, {
+                'id': '4',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0655, 103.827),
+                'content': '张掖路'
+            }, {'id': '5', 'styleId': 'small', 'position': new TMap.LatLng(36.0727, 103.805), 'content': '黄河母亲'}, {
+                'id': '6',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0669, 103.829),
+                'content': '城隍庙'
+            }, {'id': '7', 'styleId': 'small', 'position': new TMap.LatLng(36.0721, 103.823), 'content': '白塔山公园'}, {
+                'id': '8',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0698, 103.823),
+                'content': '中山桥'
+            }, {'id': '9', 'styleId': 'small', 'position': new TMap.LatLng(36.0762, 103.816), 'content': '碑林'}, {
+                'id': '10',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0689, 103.851),
+                'content': '水车博览园'
+            }, {'id': '11', 'styleId': 'small', 'position': new TMap.LatLng(36.0677, 103.777), 'content': '极地海洋世界'}, {
+                'id': '12',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0443, 103.833),
+                'content': '五泉山公园'
+            }, {'id': '13', 'styleId': 'small', 'position': new TMap.LatLng(36.0823, 103.733), 'content': '兰州老街'}, {
+                'id': '14',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0581, 103.849),
+                'content': '东方红广场'
+            }, {'id': '15', 'styleId': 'small', 'position': new TMap.LatLng(36.0599, 103.827), 'content': '正宁路小吃街'}, {
+                'id': '16',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.069, 103.816),
+                'content': '白云观'
+            }, {'id': '17', 'styleId': 'small', 'position': new TMap.LatLng(36.0349, 103.845), 'content': '兰山公园'}, {
+                'id': '18',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0927, 103.719),
+                'content': '黄河湿地公园'
+            }, {'id': '19', 'styleId': 'small', 'position': new TMap.LatLng(36.0697, 103.857), 'content': '兰州市体育公园'}, {
+                'id': '20',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0918, 103.869),
+                'content': '徐家山森林公园'
+            }, {'id': '21', 'styleId': 'small', 'position': new TMap.LatLng(36.0656, 103.863), 'content': '雁滩公园'}, {
+                'id': '22',
+                'styleId': 'small',
+                'position': new TMap.LatLng(36.0716, 103.805),
+                'content': '小西湖公园'
+            }]
+
+    });
+    var arr = [];
+    let str = ""
+    //监听回调函数（非匿名函数）
+    var eventClick = function (evt) {
+        if (arr.includes(evt.geometry.id)) {
+            element = evt.geometry.id
+            var new_set = new Set(arr)
+            new_set.delete(element)
+            arr = [...new_set]
+            alert("已取消选择此点")
+        } else {
+            arr.push(evt.geometry.id)
+            alert("已选择此点")
+        }
+        console.log(arr)
+    }
+
+    function addClick() {
+        //监听marker点击事件
+        marker.on("click", eventClick)
+    }
+
+    function submit() {
+        var url = "/testPost";
+        for (let arrKey in arr) {
+            str = str + arr[arrKey] + ""
+        }
+        $.post(url, {"arr": str}, function (data) {
+            alert("提交成功");
+        });
+    }
+
+    function showWay() {
+        map.destroy();
+        console.log(points_all[arr[0]])
+        console.log("开始导航")
+        map = new TMap.Map("container", {
+            center: new TMap.LatLng(36.0727, 103.805),
+            zoom: 14,
+        });
+        var waypoints = []//途径点
+        for (let i = 1, len = arr.length; i < len - 1; i++) {
+            waypoints.push(new TMap.LatLng(points_all[arr[i]].longitude, points_all[arr[i]].latitude))
+        }
+        var startPosition = new TMap.LatLng(points_all[arr[0]].longitude, points_all[arr[0]].latitude); // 路线规划起点
+        var endPosition = new TMap.LatLng(points_all[arr[arr.length - 1]].longitude, points_all[arr[arr.length - 1]].latitude); // 路线规划终点
+        console.log(startPosition)
+        console.log(waypoints)
+        console.log(endPosition)
+        var marker = new TMap.MultiMarker({
+            // 创造MultiMarker显示起终点标记
+            id: "marker-layer",
+            map: map,
+            styles: {
+                start: new TMap.MarkerStyle({
+                    width: 25,
+                    height: 35,
+                    anchor: {x: 16, y: 32},
+                    src: "https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/start.png",
+                }),
+                end: new TMap.MarkerStyle({
+                    width: 25,
+                    height: 35,
+                    anchor: {x: 16, y: 32},
+                    src: "https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/end.png",
+                }),
+            },
+            geometries: [
+                {
+                    id: "start",
+                    styleId: "start",
+                    position: startPosition,
+                },
+                {
+                    id: "end",
+                    styleId: "end",
+                    position: endPosition,
+                },
+            ],
+        });
+
+        var driving = new TMap.service.Driving({
+            // 新建一个驾车路线规划类
+            mp: false, // 是否返回多方案
+            policy: "PICKUP,NAV_POINT_FIRST", // 规划策略
+        });
+        console.log("得到路线")
+        driving.search({from: startPosition, to: endPosition, waypoints: waypoints}).then((result) => {
+            displayPolyline(result.result.routes[0].polyline); // 绘制路径折线
+        });
+    }
+
+    function displayPolyline(pl) {
+        // 创建 MultiPolyline显示路径折线
+        var polylineLayer = new TMap.MultiPolyline({
+            id: "polyline-layer",
+            map: map,
+            styles: {
+                style_blue: new TMap.PolylineStyle({
+                    color: "#3777FF",
+                    width: 8,
+                    borderWidth: 5,
+                    borderColor: "#FFF",
+                    lineCap: "round",
+                })
+            },
+            geometries: [
+                {
+                    id: "pl_1",
+                    styleId: "style_blue",
+                    paths: pl,
+                }
+            ],
+        });
+    }
+
+    var infoShow = function (res) {
+        var re = res && res.geometry;
+        if (re) {
+            //初始化infoWindow
+            var infoWindow = new TMap.InfoWindow({
+                map: map,
+                position: new TMap.LatLng(re.position.lat, re.position.lng), //设置信息框位置
+                content: "已选中" //设置信息框内容
+            });
+        }
+    }
+    addClick()
+
+</script>
+</body>
+
+
+</html>
