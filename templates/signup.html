@@ -18,20 +18,26 @@
 </div>
 <div class="simple-page-wrap">
     <form method="post">
-    <div class="simple-page-form" id="login-form">
+    <div class="simple-page-form">
         {{ form.hidden_tag() }}
-        <div class="username">
-            {{ form.name(class="form-control") }}
-        </div>
-        <div class="password">
-            {{ form.password(class="form-control") }}
-        </div>
-        <div class="next">
-            <span class="nexttext">{{ form.submit }}</span>
+            {{ form.name(class="username") }}
+            {{ form.password(class="password") }}
+        <div class="next"><span class="nexttext" onclick="submit()">下一步</span>
     </div>
     </div>
     </form>
 </div>
+<script src="../static/js/jquery.min.js"></script>
+<script>
+    function submit(){
+        var url = "/get_routes";
+        $.post(url, {"arr": "str"}, function (data) {
+            console.log(data)
+        });
+    }
+</script>
+
+
 </body>
 
 </html>

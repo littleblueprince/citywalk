@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+ <script src="../static/js/jquery.min.js"></script>
+<script>
+    function get_data() {
+        var url = "/get_routes";
+        $.post(url, {"arr": "str"}, function (data) {
+            console.log(data)
+        });
+    }
+    get_data()
+</script>
+</body>
+</html>

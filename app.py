@@ -130,6 +130,8 @@ def index():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    result = request.values.to_dict()
+    arr = result.get('arr')
     form = SignupForm()
     if form.validate_on_submit():
         user = User(name=form.name.data, password=form.name.data)
@@ -422,6 +424,13 @@ def get_data():
     print(data)
     return "dasda"
 
+@app.route("/get_data_test",methods=["GET","POST"])
+def get_data_test():
+    return render_template("showDataTest.html")
+
+@app.route("/test_A",methods=["GET","POST"])
+def test_A():
+    return render_template("test.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
